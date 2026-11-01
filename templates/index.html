@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Twenty</title>
+  <meta name="description" content="A 3D Rubik's Cube you can turn by hand or solve with Kociemba's two-phase algorithm.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><rect width='10' height='10' rx='2' fill='%23ffd400'/></svg>">
+  <link rel="preload" href="/fonts/big-shoulders-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+  <script type="importmap">
+    { "imports": { "three": "/vendor/three.module.min.js" } }
+  </script>
+</head>
+<body>
+  <main class="layout">
+    <div class="viewport" id="viewport">
+      <div class="big-number" id="big-number" aria-hidden="true">20</div>
+      <canvas id="canvas" aria-label="3D Rubik's Cube. Use the face buttons or the keyboard to turn it."></canvas>
+    </div>
+
+    <header class="masthead">
+      <h1>Twenty</h1>
+      <p>Every scrambled cube can be solved in 20 moves or fewer.</p>
+    </header>
+
+    <section class="actions">
+      <p class="status" id="status" aria-live="polite">Scramble it, then watch it solve itself.</p>
+      <button class="solve" id="solve">Solve</button>
+      <div class="secondary-actions">
+        <button class="text-button" id="scramble">Scramble</button>
+        <button class="text-button" id="undo">Undo</button>
+        <button class="text-button" id="reset">Reset</button>
+      </div>
+    </section>
+
+    <section class="player" id="player" aria-label="Solution" hidden>
+      <div class="tokens" id="tokens"></div>
+      <div class="transport">
+        <button class="icon-button" id="step-back" aria-label="Previous move">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2.5v14H6zM19 5v14L9 12z"/></svg>
+        </button>
+        <button class="icon-button play" id="play" aria-label="Play">
+          <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg>
+        </button>
+        <button class="icon-button" id="step-forward" aria-label="Next move">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 5H18v14h-2.5zM5 5l10 7-10 7z"/></svg>
+        </button>
+        <input class="scrubber" id="scrubber" type="range" min="0" value="0" aria-label="Solution position">
+        <div class="speeds" role="group" aria-label="Playback speed">
+          <button class="speed" data-speed="slow">Slow</button>
+          <button class="speed" data-speed="normal" aria-pressed="true">Normal</button>
+          <button class="speed" data-speed="fast">Fast</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Turn a face">
+      <div class="pad" id="pad"></div>
+      <p class="hint">Drag a sticker to turn a layer, or the background to look around. Keys U R F D L B turn a face, and Shift reverses it.</p>
+    </section>
+  </main>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
